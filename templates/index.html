@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bank Marketing Campaign Prediction</title>
+		<style>
+	body {
+	font-family: Arial, sans-serif;
+	background-color: #3483A6;
+}
+
+h1 {
+	color: purple;
+	text-align: center;
+}
+p {
+	color: yellow;
+	text-align: center;
+}
+
+form {
+	background-color: #fff;
+	padding: 20px;
+	max-width: 600px;
+	margin: 0 auto;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	color: #c71585;
+}
+
+input[type="number"], select, input[type="submit"] {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: none;
+	border-radius: 5px;
+	box-sizing: border-box;
+	margin-bottom: 15px;
+	outline: none;
+	border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+	background-color: #4CAF50;
+	color: #fff;
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+	background-color: #2E8B57;
+}
+
+.container {
+	margin-top: 20px;
+	text-align: center;
+	color: #555;
+}
+
+.container span {
+	color: #4CAF50;
+	font-weight: bold;
+}
+
+	</style>
+</head>
+<body>
+
+  
+    <h1>Bank Marketing Campaign Prediction</h1>
+    <p>Enter customer information to predict whether they are likely to deposit:</p>
+	<div class="container">
+    <form method="POST" action="{{ url_for('predict') }}">
+
+        
+        <label for="duration">Duration of last contact (in seconds):</label>
+        <input type="number" id="duration" name="duration" required><br><br>
+		
+		        <label for="month">Month:</label>
+        <select id="month" name="month" required>
+            <option value="jan">january</option>
+            <option value="feb">february</option>
+            <option value="mar">march</option>
+            <option value="apr">april</option>
+            <option value="may">may</option>
+            <option value="jun">june</option>
+            <option value="jul">july</option>
+            <option value="aug">august</option>
+            <option value="sep">september</option>
+            <option value="oct">october</option>
+            <option value="nov">november</option>
+            <option value="dec">december</option>
+        </select><br><br>
+		
+               <label for="day">Day of contact:</label>
+        <input type="number" id="day" name="day" required><br><br>
+		
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+        
+        <label for="balance">Balance:</label>
+        <input type="number" id="balance" name="balance" required><br><br>
+        
+ 		
+        <label for="campaign">Number of contacts performed during this campaign for this client:</label>
+        <input type="number" id="campaign" name="campaign" required><br><br>
+ 
+        <label for="job">Job:</label>
+        <select id="job" name="job" required>
+            <option value="admin.">admin.</option>
+            <option value="blue-collar">blue-collar</option>
+            <option value="entrepreneur">entrepreneur</option>
+            <option value="housemaid">housemaid</option>
+            <option value="management">management</option>
+            <option value="retired">retired</option>
+            <option value="self-employed">self-employed</option>
+            <option value="services">services</option>
+            <option value="student">student</option>
+            <option value="technician">technician</option>
+            <option value="unemployed">unemployed</option>
+            <option value="unknown">unknown</option>
+        </select><br><br>
+
+		<label for="poutcome">poutcome:</label>
+        <select id="poutcome" name="poutcome" required>
+            <option value="success">success.</option>
+            <option value="unknown">unknown</option>
+            <option value="other">other</option>
+            <option value="failure">failure</option>          
+        </select><br><br>
+			
+
+		<label for="contact">contact:</label>
+        <select id="contact" name="contact" required>
+            <option value="cellular">cellular.</option>
+            <option value="unknown">unknown</option>
+            <option value="telephone">telephone</option>
+
+        </select><br><br>
+		
+				<label for="housing">Has housing loan:</label>
+				<input type="radio" id="housing_yes" name="housing" value="yes">
+				<label for="housing_yes">Yes</label>
+				<input type="radio" id="housing_no" name="housing" value="no">
+				<label for="housing_no">No</label><br><br>
+        
+        <label for="education">Education level:</label>
+        <select id="education" name="education" required>
+            <option value="primary">primary</option>
+            <option value="secondary">secondary</option>
+            <option value="tertiary">tertiary</option>
+            <option value="unknown">unknown</option>
+        </select><br><br>
+ 				
+
+        <label for="marital">Marital status:</label>
+        <select id="marital" name="marital" required>
+            <option value="divorced">divorced</option>
+            <option value="married">married</option>
+            <option value="single">single</option>
+            
+        </select><br><br>
+   
+ 
+        <label for="pdays">Number of days that passed by after the client was last contacted from a previous campaign:</label>
+        <input type="number" id="pdays" name="pdays" required><br><br>
+        
+        <label for="previous">Number of contacts performed before this campaign and for this client:</label>
+        <input type="number" id="previous" name="previous" required><br><br>
+        
+		
+	
+				<input type="submit" value="Predict">
+</form>
+</div>
+
+
+{% if prediction %}
+		<p>The predicted outcome of the marketing campaign is <span>{{ prediction }}</span>.</p>
+{% else %}
+		<p>Please fill out the form above to make a prediction.</p>
+{% endif %}
+
+</body>
+</html>
